@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cow Connect</title>
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to top, #b6e2a1, #e8f6ef);
+    color: #3e4532;
+  }
+
+  /* Header Section */
+  header {
+    background: url('https://i.ibb.co/zPHMvsR/green-fields.jpg') center/cover no-repeat;
+    text-align: center;
+    padding: 30px 10px;
+    color: white;
+    position: relative;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+  }
+
+  header img.cow {
+    width: 100px;
+    position: absolute;
+    bottom: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Main content */
+  main {
+    padding: 100px 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .card {
+    background: white;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+  }
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .card-content {
+    padding: 20px;
+  }
+  .card-content h3 {
+    color: #4a624e;
+    margin-bottom: 10px;
+  }
+  .card-content p {
+    font-size: 0.95rem;
+  }
+
+  /* Button styles */
+  .cta-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #77bbaa;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-weight: bold;
+  }
+  .cta-btn:hover {
+    background: #558877;
+  }
+
+  /* Cow Breeds & Health Section */
+  #cow-breeds-health { 
+    background: #f5fbe6; 
+    padding: 40px 20px; 
+    border-radius: 18px;
+    margin: 40px auto;
+    max-width: 1200px;
+    color: #234e36;
+  }
+  #cow-breeds-health h2 {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: #4a624e;
+    text-align: center;
+  }
+  .breeds-list {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .breed-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(100,120,100,0.09);
+    width: 260px;
+    padding: 18px;
+    text-align: center;
+  }
+  .breed-card img {
+    width: 180px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .breed-card ul {
+    text-align: left;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .health-care {
+    margin-top: 40px;
+  }
+  .health-care h3 {
+    color: #234e36;
+    margin-bottom: 18px;
+  }
+  .health-care ul {
+    background: #e0f7d1;
+    padding: 20px;
+    border-radius: 10px;
+    list-style: disc inside;
+    font-size: 1rem;
+  }
+  .health-care p {
+    font-size: 1rem;
+    margin-top: 18px;
+    color: #497334;
+  }
+
+  /* Footer */
+  footer {
+    background: #dce7d4;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #556b2f;
+    position: relative;
+  }
+  footer img {
+    width: 100px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cow Connect</h1>
+  <img src="D:\CowConnect\Tech-Enhanced Farm Logo Design.png" class="cow" alt="Cow mascot">
+</header>
+
+<main>
+  <!-- Card 1 -->
+  <div class="card">
+    <img src="https://i.ibb.co/19Jh5V7/wind-turbine-field.jpg" alt="Wind Energy">
+    <div class="card-content">
+      <h3>Clean Energy</h3>
+      <p>Supporting a sustainable future with wind and solar energy alongside healthy farmlands.</p>
+      <a href="#" class="cta-btn">Learn More</a>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <img src="https://i.ibb.co/G3fwWyP/cow-field.jpg" alt="Cow in Field">
+    <div class="card-content">
+      <h3>Happy Cows</h3>
+      <p>Our cows graze freely in lush fields, promoting ethical dairy farming practices.</p>
+      <a href="#" class="cta-btn">Meet the Herd</a>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <img src="https://i.ibb.co/PN1RmB2/organic-farm.jpg" alt="Organic Farm">
+    <div class="card-content">
+      <h3>Organic Farming</h3>
+      <p>We ensure our farms are 100% organic, protecting nature and our animals.</p>
+      <a href="#" class="cta-btn">Our Practices</a>
+    </div>
+  </div>
+</main>
+
+<!-- Cow Breeds & Health Section -->
+<section id="cow-breeds-health">
+  <h2>All About Cow Breeds & Their Health</h2>
+  <div class="breeds-list">
+    <div class="breed-card">
+      <h3>Holstein</h3>
+      <img src="https://i.ibb.co/drCjGQd/holstein-cow.jpg" alt="Holstein Cow"/>
+      <ul>
+        <li><strong>Main Use:</strong> Dairy</li>
+        <li><strong>Normal Temperature:</strong> 38–39.3°C</li>
+        <li><strong>Normal Heart Rate:</strong> 48–84 beats/min</li>
+        <li><strong>Features:</strong> Black & white, high milk yield</li>
+      </ul>
+    </div>
+    <div class="breed-card">
+      <h3>Jersey</h3>
+      <img src="https://i.ibb.co/9VJvx2b/jersey-cow.jpg" alt="Jersey Cow"/>
+      <ul>
+        <li><strong>Main Use:</strong> Dairy</li>
+        <li><strong>Normal Temperature:</strong> 38–39.3°C</li>
+        <li><strong>Normal Heart Rate:</strong> 48–84 beats/min</li>
+        <li><strong>Features:</strong> Small, tan/brown, rich milk</li>
+      </ul>
+    </div>
+    <div class="breed-card">
+      <h3>Sahiwal</h3>
+      <img src="https://i.ibb.co/vBzT2v4/sahiwal-cow.jpg" alt="Sahiwal Cow"/>
+      <ul>
+        <li><strong>Main Use:</strong> Dual (dairy & draught)</li>
+        <li><strong>Normal Temperature:</strong> 38–39.3°C</li>
+        <li><strong>Normal Heart Rate:</strong> 48–84 beats/min</li>
+        <li><strong>Features:</strong> Reddish brown, heat tolerant</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="health-care">
+    <h3>Basic Cow Health Care</h3>
+    <ul>
+      <li><strong>Body Temperature:</strong> 37.7–39.4°C is healthy. Fever (&gt;39.5°C) may signal infection.</li>
+      <li><strong>Heart Rate:</strong> 76–96 beats/min in healthy cows (normal range may shift by breed and age).</li>
+      <li><strong>Respiratory Rate:</strong> 20–44 breaths/min.</li>
+      <li><strong>Regular Checks:</strong> Monitor temperature, heart beat, appetite, and activity.</li>
+      <li><strong>Vaccination:</strong> Protect against common diseases.</li>
+      <li><strong>Hygiene:</strong> Clean bedding and water, regular grooming.</li>
+      <li><strong>Nutritional Needs:</strong> Balanced diet with minerals, vitamins, and clean water.</li>
+      <li><strong>Breed Differences:</strong> Indigenous breeds (like Sahiwal, Gir) tend to be more heat and disease-resistant.</li>
+    </ul>
+    <p>
+      If cows show abnormal temperature or heart rate, consult a veterinarian promptly.<br>
+      Major health problems to watch: mastitis, lameness, nutritional deficiency, reproductive issues, fever, and digestive disorders.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <img src="https://i.ibb.co/0fG15Q6/cow-laying.png" alt="Cow in grass">
+  <p>🌱 Moo-ing towards a greener future — one pasture at a time.</p>
+</footer>
+
+<script>
+  // Small JS: Add playful interaction to cow image in header
+  const cowImage = document.querySelector('header img.cow');
+  cowImage.addEventListener('mouseenter', () => {
+    cowImage.style.transform = 'translateX(-50%) scale(1.1) rotate(5deg)';
+  });
+  cowImage.addEventListener('mouseleave', () => {
+    cowImage.style.transform = 'translateX(-50%) scale(1) rotate(0deg)';
+  });
+
+  // Optional JS function for health check alerts (not hooked to UI here)
+  function checkCowHealth(temp, heartRate) {
+    let msg = "Cow Health: ";
+    if (temp > 39.5) {
+      msg += "High fever! Call vet.";
+    } else if (temp < 37.5) {
+      msg += "Low temperature, possible shock.";
+    } else if (heartRate > 100) {
+      msg += "High heart rate, check for pain/stress.";
+    } else {
+      msg += "Vitals normal.";
+    }
+    alert(msg);
+  }
+
+  // Example usage (uncomment to test): checkCowHealth(40, 90);
+</script>
+
+</body>
+</html>
