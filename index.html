@@ -207,7 +207,7 @@
   <p>🌱 Moo-ing towards a greener future — one pasture at a time.</p>
 </footer>
 
-<a href="YOUR_DIALOGFLOW_LINK" target="_blank" class="chatbot-btn">💬</a>
+<a href="https://console.dialogflow.com/api-client/demo/embedded/a607e665-c482-4b2f-94a4-a3bcea8abab8" target="_blank" class="chatbot-btn">💬</a>
 
 <script>
   // Cow image hover interaction
@@ -222,7 +222,7 @@
   // TFLite Cow Health Predictor
   let tfliteModel;
   async function loadModel() {
-    tfliteModel = await tflite.loadTFLiteModel('YOUR_MODEL_URL_HERE');
+    tfliteModel = await tflite.loadTFLiteModel('cow_health_model.tflite');
   }
   loadModel();
 
@@ -249,6 +249,7 @@
 </script>
 </body>
 </html>
+
 
 
 
