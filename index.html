@@ -84,6 +84,17 @@
     transition: transform 0.2s ease, background 0.2s ease;
   }
   .chatbot-btn:hover {background: #45a049; transform: scale(1.1);}
+  #thingspeak-data {
+    max-width: 400px;
+    margin: 20px auto 40px;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    color: #234e36;
+    font-weight: 600;
+    text-align: center;
+  }
 </style>
 <!-- TensorFlow.js core and TFLite extension -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
@@ -95,6 +106,9 @@
   <h1>Cow Connect</h1>
   <img src="Tech-Enhanced Farm Logo Design.png" class="cow" alt="Cow mascot">
 </header>
+
+<!-- ThingSpeak Data Display -->
+<div id="thingspeak-data">Loading ThingSpeak data...</div>
 
 <!-- Cow Breeds & Health Section -->
 <section id="cow-breeds-health">
@@ -112,7 +126,7 @@
     </div>
     <div class="breed-card">
       <h3>Jersey</h3>
-      <img src="istockphoto-2128077473-612x612.jpg"/>
+      <img src="istockphoto-2128077473-612x612.jpg" alt="Jersey Cow"/>
       <ul>
         <li><strong>Main Use:</strong> Dairy</li>
         <li><strong>Normal Temperature:</strong> 38–39.3°C</li>
@@ -135,7 +149,7 @@
   <div class="health-care">
     <h3>Basic Cow Health Care</h3>
     <ul>
-      <li><strong>Body Temperature:</strong> 37.7–39.4°C is healthy. Fever (>39.5°C) may signal infection.</li>
+      <li><strong>Body Temperature:</strong> 37.7–39.4°C is healthy. Fever (&gt;39.5°C) may signal infection.</li>
       <li><strong>Heart Rate:</strong> 76–96 beats/min.</li>
       <li><strong>Respiratory Rate:</strong> 20–44 breaths/min.</li>
       <li><strong>Regular Checks:</strong> Monitor temperature, heart beat, appetite, and activity.</li>
@@ -180,24 +194,32 @@
 <a href="https://console.dialogflow.com/api-client/demo/embedded/a607e665-c482-4b2f-94a4-a3bcea8abab8" target="_blank" class="chatbot-btn">💬</a>
 
 <script>
-
- <div id="thingspeak-data"></div>
-<script>
+  // ThingSpeak API Setup
   const channelId = '3026981';
   const readApiKey = 'ZGYPND6C7VHEXT9R';
   const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${readApiKey}&results=1`;
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
+  async function fetchThingSpeakData() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
       const latestEntry = data.feeds[0];
-      // Assuming data fields are field1, field2, etc.
-      const field1 = latestEntry.field1;
-      document.getElementById('thingspeak-data').innerText = `Field 1 Value: ${field1}`;
-    })
-    .catch(error => console.error('Error fetching ThingSpeak data:', error));
- 
-  // Cow image hover interaction
+      // Extract relevant fields (e.g., field1, field2...)
+      let displayText = '';
+      for (const key in latestEntry) {
+        if (key.startsWith('field') && latestEntry[key] !== null) {
+          displayText += `${key}: ${latestEntry[key]}  `;
+        }
+      }
+      document.getElementById('thingspeak-data').innerText = displayText || 'No data available.';
+    } catch(error) {
+      console.error('Error fetching ThingSpeak data:', error);
+      document.getElementById('thingspeak-data').innerText = 'Error loading data.';
+    }
+  }
+  fetchThingSpeakData();  // Fetch on page load
+
+  // Cow mascot hover effect
   const cowImage = document.querySelector('header img.cow');
   cowImage.addEventListener('mouseenter', () => {
     cowImage.style.transform = 'translateX(-50%) scale(1.1) rotate(5deg)';
@@ -206,38 +228,41 @@
     cowImage.style.transform = 'translateX(-50%) scale(1) rotate(0deg)';
   });
 
-  // TFLite Cow Health Predictor
+  // Load TensorFlow Lite model and prediction handling
   let tfliteModel;
   async function loadModel() {
-    tfliteModel = await tflite.loadTFLiteModel('https://colab.research.google.com/drive/18-Tvjo2krbfNwihqGDK3VEmsTpCakPAT?usp=sharing');
+    // Replace with your actual TFLite model URL (the provided link looks like a Colab notebook, not a model URL)
+    tfliteModel = await tflite.loadTFLiteModel('model.tflite');
   }
   loadModel();
 
   document.getElementById('predictForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     if (!tfliteModel) {
-      document.getElementById('predictionResult').innerText = 'Model loading...';
+      document.getElementById('predictionResult').innerText = 'Model loading... Please wait.';
       return;
     }
-
-   
     const temp = parseFloat(this.temperature.value);
     const heart = parseFloat(this.heartRate.value);
     const resp = parseFloat(this.respRate.value);
+    // Prepare input tensor as per model input shape and requirements
     const inputTensor = tf.tensor2d([[temp, heart, resp]]);
-    const output = await tfliteModel.predict(inputTensor);
-    const result = output.dataSync()[0];
-    let text = '';
-    if (result > 0.5) {
-      text = 'Prediction: Cow is healthy!';
-    } else {
-      text = 'Prediction: Cow is unhealthy!';
+    try {
+      const output = await tfliteModel.predict(inputTensor);
+      const result = output.dataSync()[0];
+      const text = result > 0.5 ? 'Prediction: Cow is healthy!' : 'Prediction: Cow is unhealthy!';
+      document.getElementById('predictionResult').innerText = text;
+    } catch(err) {
+      console.error("Prediction error:", err);
+      document.getElementById('predictionResult').innerText = 'Error during prediction.';
     }
-    document.getElementById('predictionResult').innerText = text;
   });
 </script>
+
 </body>
 </html>
+
+
 
 
 
