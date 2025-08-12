@@ -180,6 +180,23 @@
 <a href="https://console.dialogflow.com/api-client/demo/embedded/a607e665-c482-4b2f-94a4-a3bcea8abab8" target="_blank" class="chatbot-btn">💬</a>
 
 <script>
+
+ <div id="thingspeak-data"></div>
+<script>
+  const channelId = 'YOUR_CHANNEL_ID';
+  const readApiKey = 'YOUR_READ_API_KEY';
+  const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${readApiKey}&results=1`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const latestEntry = data.feeds[0];
+      // Assuming data fields are field1, field2, etc.
+      const field1 = latestEntry.field1;
+      document.getElementById('thingspeak-data').innerText = `Field 1 Value: ${field1}`;
+    })
+    .catch(error => console.error('Error fetching ThingSpeak data:', error));
+ 
   // Cow image hover interaction
   const cowImage = document.querySelector('header img.cow');
   cowImage.addEventListener('mouseenter', () => {
@@ -202,6 +219,8 @@
       document.getElementById('predictionResult').innerText = 'Model loading...';
       return;
     }
+
+   
     const temp = parseFloat(this.temperature.value);
     const heart = parseFloat(this.heartRate.value);
     const resp = parseFloat(this.respRate.value);
@@ -219,6 +238,7 @@
 </script>
 </body>
 </html>
+
 
 
 
