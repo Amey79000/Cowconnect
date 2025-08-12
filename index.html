@@ -5,98 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Environment & Cow Theme</title>
 <style>
-  /* Basic Reset */
   * {margin: 0; padding: 0; box-sizing: border-box;}
-
   body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to top, #b6e2a1, #e8f6ef);
     color: #3e4532;
   }
-
-  /* Header Section */
   header {
     background: url('https://i.ibb.co/zPHMvsR/green-fields.jpg') center/cover no-repeat;
-    text-align: center;
-    padding: 30px 10px;
-    color: white;
-    position: relative;
+    text-align: center; padding: 30px 10px; color: white; position: relative;
   }
   header h1 {font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,.5);}
   header img.cow {
-    width: 100px;
-    position: absolute;
-    bottom: -75px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100px; position: absolute; bottom: -75px; left: 50%; transform: translateX(-50%);
     transition: transform 0.3s ease;
   }
-
-  /* Main content */
   main {
-    padding: 100px 20px 40px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    padding: 100px 20px 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
   }
-  .card {
-    background: white;
-    border-radius: 15px;
-    width: 300px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
-    position: relative;
-  }
+  .card {background: white; border-radius: 15px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
+    transition: transform 0.3s; position: relative;}
   .card:hover {transform: translateY(-8px);}
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+  .card img {width: 100%; height: 180px; object-fit: cover;}
   .card-content {padding: 20px;}
   .card-content h3 {color: #4a624e; margin-bottom: 10px;}
   .card-content p {font-size: 0.95rem;}
-  .cta-btn {
-    display: inline-block; margin-top: 15px; padding: 10px 18px;
-    background: #77bbaa; color: white; border-radius: 25px;
-    text-decoration: none; transition: background 0.3s; font-weight: bold;
-  }
+  .cta-btn {display: inline-block; margin-top: 15px; padding: 10px 18px; background: #77bbaa; color: white; border-radius: 25px;
+    text-decoration: none; transition: background 0.3s; font-weight: bold;}
   .cta-btn:hover {background: #558877;}
-
-  /* Cow Breeds & Health Section */
-  #cow-breeds-health { 
-    background: #f5fbe6; padding: 40px 20px; border-radius: 18px;
-    margin: 40px auto; max-width: 1200px; color: #234e36;
+  #cow-breeds-health {
+    background: #f5fbe6; padding: 40px 20px; border-radius: 18px; margin: 40px auto; max-width: 1200px; color: #234e36;
   }
   #cow-breeds-health h2 {margin-bottom: 30px; font-size: 2.2rem; color: #4a624e; text-align: center;}
-  .breeds-list {
-    display: flex; gap: 25px; flex-wrap: wrap;
-    justify-content: center;
-  }
-  .breed-card {
-    background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(100,120,100,0.09);
-    width: 260px; padding: 18px; text-align: center;
-  }
+  .breeds-list {display: flex; gap: 25px; flex-wrap: wrap; justify-content: center;}
+  .breed-card {background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(100,120,100,0.09); width: 260px; padding: 18px; text-align: center;}
   .breed-card img {width: 180px; border-radius: 10px; margin-bottom: 10px;}
   .breed-card ul {text-align: left; font-size: 1rem; margin-top: 10px;}
   .health-care {margin-top: 40px;}
   .health-care h3 {color: #234e36; margin-bottom: 18px;}
-  .health-care ul {
-    background: #e0f7d1; padding: 20px; border-radius: 10px;
-    list-style: disc inside; font-size: 1rem;
-  }
+  .health-care ul {background: #e0f7d1; padding: 20px; border-radius: 10px; list-style: disc inside; font-size: 1rem;}
   .health-care p {font-size: 1rem; margin-top: 18px; color: #497334;}
-
-  /* Footer */
+  #cow-predictor {
+    background: #e8f6ef;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  #cow-predictor label {display: block; margin-bottom: 12px;}
+  #cow-predictor input {margin-left: 10px; padding: 4px 8px;}
+  #cow-predictor button {
+    background: #77bbaa; color: white; padding: 8px 24px; border: none;
+    border-radius: 20px; cursor: pointer; margin-top: 12px;
+  }
+  #predictionResult {margin-top: 18px; font-weight: bold;}
   footer {
     background: #dce7d4; padding: 20px; text-align: center;
     font-size: 0.9rem; color: #556b2f; position: relative;
   }
   footer img {width: 100px; display: block; margin: 0 auto 10px;}
-
-  /* Floating Chatbot Button */
   .chatbot-btn {
     position: fixed;
     bottom: 20px;
@@ -115,11 +83,11 @@
     z-index: 100;
     transition: transform 0.2s ease, background 0.2s ease;
   }
-  .chatbot-btn:hover {
-    background: #45a049;
-    transform: scale(1.1);
-  }
+  .chatbot-btn:hover {background: #45a049; transform: scale(1.1);}
 </style>
+<!-- TensorFlow.js core and TFLite extension -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script>
 </head>
 <body>
 
@@ -138,7 +106,6 @@
       <a href="#" class="cta-btn">Learn More</a>
     </div>
   </div>
-
   <!-- Card 2 -->
   <div class="card">
     <img src="https://i.ibb.co/G3fwWyP/cow-field.jpg" alt="Cow in Field">
@@ -148,7 +115,6 @@
       <a href="#" class="cta-btn">Meet the Herd</a>
     </div>
   </div>
-
   <!-- Card 3 -->
   <div class="card">
     <img src="https://i.ibb.co/PN1RmB2/organic-farm.jpg" alt="Organic Farm">
@@ -215,12 +181,32 @@
   </div>
 </section>
 
+<!-- Cow Health Predictor Section -->
+<section id="cow-predictor">
+  <h2>Cow Health Predictor (AI)</h2>
+  <form id="predictForm">
+    <label>
+      Body Temperature (°C):
+      <input type="number" step="0.1" name="temperature" required>
+    </label>
+    <label>
+      Heart Rate (beats/min):
+      <input type="number" name="heartRate" required>
+    </label>
+    <label>
+      Respiratory Rate (breaths/min):
+      <input type="number" name="respRate" required>
+    </label>
+    <button type="submit">Predict Health</button>
+  </form>
+  <div id="predictionResult"></div>
+</section>
+
 <footer>
   <img src="https://i.ibb.co/0fG15Q6/cow-laying.png" alt="Cow in grass">
   <p>🌱 Moo-ing towards a greener future — one pasture at a time.</p>
 </footer>
 
-<!-- Floating Chatbot Button -->
 <a href="YOUR_DIALOGFLOW_LINK" target="_blank" class="chatbot-btn">💬</a>
 
 <script>
@@ -233,18 +219,38 @@
     cowImage.style.transform = 'translateX(-50%) scale(1) rotate(0deg)';
   });
 
-  // Optional health check function
-  function checkCowHealth(temp, heartRate) {
-    let msg = "Cow Health: ";
-    if (temp > 39.5) {msg += "High fever! Call vet.";}
-    else if (temp < 37.5) {msg += "Low temperature, possible shock.";}
-    else if (heartRate > 100) {msg += "High heart rate - stress or pain.";}
-    else {msg += "Vitals normal.";}
-    alert(msg);
+  // TFLite Cow Health Predictor
+  let tfliteModel;
+  async function loadModel() {
+    tfliteModel = await tflite.loadTFLiteModel('YOUR_MODEL_URL_HERE');
   }
+  loadModel();
+
+  document.getElementById('predictForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!tfliteModel) {
+      document.getElementById('predictionResult').innerText = 'Model loading...';
+      return;
+    }
+    const temp = parseFloat(this.temperature.value);
+    const heart = parseFloat(this.heartRate.value);
+    const resp = parseFloat(this.respRate.value);
+    const inputTensor = tf.tensor2d([[temp, heart, resp]]);
+    const output = await tfliteModel.predict(inputTensor);
+    const result = output.dataSync()[0];
+    let text = '';
+    if (result > 0.5) {
+      text = 'Prediction: Cow is healthy!';
+    } else {
+      text = 'Prediction: Cow is unhealthy!';
+    }
+    document.getElementById('predictionResult').innerText = text;
+  });
 </script>
 </body>
 </html>
+
+
 
 
 
